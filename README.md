@@ -5,10 +5,7 @@
 
 ## Scripts
 
-Scripts are in the form of Jupyter Notebooks, run from the command line with [papermill](https://github.com/nteract/papermill).  
-
-- why did I choose papermill over script execution?
--
+Scripts are in the form of python scripts, run from the command line and root of the project.  They are presented in the order in which they should be ran.
 
 Reproducibility was one of the qualities that I wanted to emphasize.  If another person runs my analysis as outlined below with the sample usages and matches the requirements file, they should end up with the same results.
 
@@ -18,10 +15,13 @@ When looking at the [original data](data/given_4U_reviews.txt) I noticed that th
 
 While the script is built specifically for Germanwings, it could easily be extended to any other airline on the same website with a few tweaks.  If I had more time I would modify it to be modular, but in the interest of time kept it specific to this task.
 
+Parameters:
+`python src/scrape_reviews.py data_save_path`
+
 Sample usage:
 
 ```
-papermill src/scraping.ipynb src/scraping_gws.ipynb -p data/scraped_gw_reviews.csv
+python src/scrape_reviews.py  data/scraped_gw_reviews.csv
 ```
 
 ### Dependencies
