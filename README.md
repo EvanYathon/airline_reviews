@@ -15,13 +15,15 @@ When looking at the [original data](data/given_4U_reviews.txt) I noticed that th
 
 While the script is built specifically for Germanwings, it could easily be extended to any other airline on the same website with a few tweaks.  If I had more time I would modify it to be modular, but in the interest of time kept it specific to this task.
 
+Note that sleep time is the time to wait between traversal of each page, in order to be polite to the website and not overload it with requests.
+
 Parameters:
-`python src/scrape_reviews.py data_save_path`
+`python src/scrape_reviews.py data_save_path sleep_time`
 
 Sample usage:
 
 ```
-python src/scrape_reviews.py  data/scraped_gw_reviews.csv
+python src/scrape_reviews.py  data/scraped_gw_reviews.csv 5
 ```
 
 ### Dependencies
