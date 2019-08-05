@@ -36,15 +36,18 @@ sleep_time = float(args.sleep_time)
 def main():
 
     # access the Germanwings first review page
-    print("Accessing the Germanwings review page.")
+    sys.stdout.write("Accessing the Germanwings review page.")
+    sys.stdout.flush()
     gw_reviews_url = sneaky_request("https://www.airlinequality.com/airline-reviews/germanwings/")
 
     # check that our status is okay, if not exit the script
     if gw_reviews_url.reason != "OK":
-        print("Status is not okay, exiting script.")
+        sys.stdout.write("Status is not okay, exiting script.")
+        sys.stdout.flush()
         sys.exit()
 
-    print("Accessed URL: {} \nStatus: {}".format(gw_reviews_url.geturl(), gw_reviews_url.reason))
+    sys.stdout.write("Accessed URL: {} \nStatus: {}".format(gw_reviews_url.geturl(), gw_reviews_url.reason))
+    sys.stdout.flush()
 
     # Use BeautifulSoup to explore and scrape the pages for the relevant info.
 
@@ -118,7 +121,8 @@ def main():
 
     # iterate through all reviews, extracting information from each
     # and storing in the parsed_reviews dict
-    print("Parsing reviews")
+    sys.stdout.write("Parsing reviews")
+    sys.stdout.flush()
 
     for review in reviews:
 
@@ -215,7 +219,8 @@ def main():
 
     parsed_reviews_df = pd.DataFrame(parsed_reviews)
 
-    print("Saving csv to {}".format(save_path))
+    sys.stdout.write("Saving csv to {}".format(save_path))
+    sys.stdout.flush()
 
     parsed_reviews_df.to_csv(save_path, index = False)
 
@@ -240,8 +245,9 @@ def sneaky_request(url):
         req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         open_url = urlopen(req)
     except HTTPError as error:
-        print("Error code: ", error.code)
-        print("The reason for the exception:", error.reason)
+        sys.stdout.write("Error code: ", error.code)
+        sys.stdout.write("The reason for the exception:", error.reason)
+        sys.stdout.flush()
 
     return open_url
 
