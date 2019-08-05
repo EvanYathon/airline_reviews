@@ -31,7 +31,7 @@ parser.add_argument("save_path")
 parser.add_argument("sleep_time")
 args = parser.parse_args()
 save_path = args.save_path
-sleep_time = args.sleep_time
+sleep_time = float(args.sleep_time)
 
 def main():
 
@@ -44,7 +44,7 @@ def main():
         print("Status is not okay, exiting script.")
         sys.exit()
 
-    print("Accessed URL: %s \nStatus: %s".format(gw_reviews_url.geturl(), gw_reviews_url.reason))
+    print("Accessed URL: {} \nStatus: {}".format(gw_reviews_url.geturl(), gw_reviews_url.reason))
 
     # Use BeautifulSoup to explore and scrape the pages for the relevant info.
 
@@ -215,7 +215,7 @@ def main():
 
     parsed_reviews_df = pd.DataFrame(parsed_reviews)
 
-    print("Saving csv to %s".format(save_path))
+    print("Saving csv to {}".format(save_path))
 
     parsed_reviews_df.to_csv(save_path, index = False)
 
