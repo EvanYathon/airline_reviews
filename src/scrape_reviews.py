@@ -36,7 +36,7 @@ sleep_time = float(args.sleep_time)
 def main():
 
     # access the Germanwings first review page
-    sys.stdout.write("Accessing the Germanwings review page.")
+    sys.stdout.write("Accessing the Germanwings review page.\n")
     sys.stdout.flush()
     gw_reviews_url = sneaky_request("https://www.airlinequality.com/airline-reviews/germanwings/")
 
@@ -46,12 +46,12 @@ def main():
         sys.stdout.flush()
         sys.exit()
 
-    sys.stdout.write("Accessed URL: {} \nStatus: {}".format(gw_reviews_url.geturl(), gw_reviews_url.reason))
+    sys.stdout.write("Accessed URL: {} \nStatus: {}\n".format(gw_reviews_url.geturl(), gw_reviews_url.reason))
     sys.stdout.flush()
 
     # Use BeautifulSoup to explore and scrape the pages for the relevant info.
 
-    gw_reviews = BeautifulSoup(gw_reviews_url.read())
+    gw_reviews = BeautifulSoup(gw_reviews_url.read(), features = "lxml")
 
     # We need to traverse all of the pages in order to extract all of the reviews;
     # this means opening each subsequent page and extracting each review.
@@ -64,6 +64,10 @@ def main():
     # create the initial list and condition to keep scraping
     reviews = []
     keep_going = True
+
+    sys.stdout.write("Scraping all review pages, this will take some time depending \
+on the input sleep time.\n")
+    sys.stdout.flush()
 
     while keep_going:
 
@@ -88,7 +92,7 @@ def main():
         # and not overload the server
         time.sleep(sleep_time)
         gw_reviews_url = sneaky_request(next_page_url)
-        gw_reviews = BeautifulSoup(gw_reviews_url.read())
+        gw_reviews = BeautifulSoup(gw_reviews_url.read(), features = "lxml")
 
     # Iterate through the reviews, building lists of the required information.
 
@@ -121,7 +125,7 @@ def main():
 
     # iterate through all reviews, extracting information from each
     # and storing in the parsed_reviews dict
-    sys.stdout.write("Parsing reviews")
+    sys.stdout.write("Parsing reviews\n")
     sys.stdout.flush()
 
     for review in reviews:
@@ -219,7 +223,7 @@ def main():
 
     parsed_reviews_df = pd.DataFrame(parsed_reviews)
 
-    sys.stdout.write("Saving csv to {}".format(save_path))
+    sys.stdout.write("Saving csv to {}\n".format(save_path))
     sys.stdout.flush()
 
     parsed_reviews_df.to_csv(save_path, index = False)

@@ -23,7 +23,7 @@ Parameters:
 Sample usage:
 
 ```
-python src/scrape_reviews.py  data/scraped_gw_reviews.csv 5
+python src/scrape_reviews.py data/scraped_gw_reviews.csv 5
 ```
 
 ### Dependencies
