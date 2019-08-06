@@ -1,11 +1,13 @@
 # Germanwings Customer Review Analysis
 #### Analysis by Evan Yathon
 
+## Overview
+
 
 
 ## Scripts
 
-Scripts are in the form of python scripts, run from the command line and root of the project.  They are presented in the order in which they should be ran.
+Scripts are in the form of python scripts or jupyter notebooks to be ran with [papermill](https://github.com/nteract/papermill), run from the command line and root of the project.  They are presented in the order in which they should be ran.
 
 Reproducibility was one of the qualities that I wanted to emphasize.  If another person runs my analysis as outlined below with the sample usages and matches the requirements file, they should end up with the same results.
 
@@ -26,4 +28,16 @@ Sample usage:
 python src/scrape_reviews.py data/scraped_gw_reviews.csv 5
 ```
 
+### Verify and Clean
+
+Verify and Clean is a notebook to be ran with [papermill](https://github.com/nteract/papermill).  Two reasons it is ran with papermill:
+1. To be able to view outputs in a nice format
+2. Contain markdown formatting for an explanation of logic and code
+
+Sample usage:
+
+`papermill src/ipynbs/verify_and_clean.ipynb src/verify_and_clean_ran.ipynb -p load_path data/scraped_gw_reviews.csv -p save_path data/cleaned_gw_reviews.csv`
+
 ### Dependencies
+
+Dependencies live in the [requirements file](requirements.txt).
