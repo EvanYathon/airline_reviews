@@ -34,6 +34,8 @@ Verify and Clean is a notebook to be ran with [papermill](https://github.com/nte
 1. To be able to view outputs in a nice format
 2. Contain markdown formatting for an explanation of logic and code
 
+While I scraped all of the data from before, I wanted to verify that I wasn't missing any reviews in the [original dataset](data/given_4U_reviews.txt).  This notebook verifies that and also does a bit of cleaning and exploration of the data.
+
 Sample usage:
 
 `papermill src/ipynbs/verify_and_clean.ipynb src/verify_and_clean_ran.ipynb -p load_path data/scraped_gw_reviews.csv -p save_path data/cleaned_gw_reviews.csv -p old_data_path data/given_4U_reviews.txt`
