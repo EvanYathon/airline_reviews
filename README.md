@@ -28,7 +28,9 @@ Sample usage:
 python src/scrape_reviews.py data/scraped_gw_reviews.csv 5
 ```
 
-### Verify and Clean
+Location of the [saved data](data/cleaned_gw_reviews.csv)
+
+### [Verify and Clean](src/verify_and_clean_ran.ipynb)
 
 Verify and Clean is a notebook to be ran with [papermill](https://github.com/nteract/papermill).  Two reasons it is ran with papermill:
 1. To be able to view outputs in a nice format
@@ -39,6 +41,15 @@ While I scraped all of the data from before, I wanted to verify that I wasn't mi
 Sample usage:
 
 `papermill src/ipynbs/verify_and_clean.ipynb src/verify_and_clean_ran.ipynb -p load_path data/scraped_gw_reviews.csv -p save_path data/cleaned_gw_reviews.csv -p old_data_path data/given_4U_reviews.txt`
+
+### [EDA](src/EDA_ran.ipynb)
+
+EDA is a notebook to be ran with [papermill](https://github.com/nteract/papermill).  It was chosen to be ran with `papermill` to view the plots in sequential order with markdown syntax helping explain each visualization.
+
+The purpose of the EDA notebook is to explore the previously cleaned data. This is done mainly through plots in order to get an idea of what to expect and any pitfalls that can be anticipated.
+
+Sample Usage:
+`papermill src/ipynbs/EDA.ipynb src/EDA_ran.ipynb -p load_path data/cleaned_gw_reviews.csv`
 
 ### Dependencies
 
