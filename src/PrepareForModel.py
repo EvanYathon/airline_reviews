@@ -26,6 +26,8 @@
 # foo = PrepareForModel(example_data)
 # foo.make_dummy_df({"type" : "pinot_noir", "colour" : "red"})
 
+import pandas as pd
+
 class PrepareForModel:
 
     """
