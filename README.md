@@ -51,6 +51,18 @@ The purpose of the EDA notebook is to explore the previously cleaned data. This 
 Sample Usage:
 `papermill src/ipynbs/EDA.ipynb src/EDA_ran.ipynb -p load_path data/cleaned_gw_reviews.csv`
 
+### [Topic Modeling](src/topic_modeling_ran.ipynb)
+
+Topic Modeling is a notebook to be ran with [papermill](https://github.com/nteract/papermill).  It was chosen to be ran with `papermill` to view plots when applicable and in sequential order with markdown syntax helping to explain topic modeling logic.
+
+The purpose of this notebook is to process the review title and content to extract key phrases in each review. Then key phrases will be used in a regression analysis to find out what is most important for a reviewer in recommending or not recommending the airline.
+
+Topic modeling using LDA will be the tool of choice. Probability of belonging to a certain topic will be new features used in the regression analysis.
+
+Sample usage:
+
+`papermill src/ipynbs/topic_modeling.ipynb src/topic_modeling_ran.ipynb -p load_path data/cleaned_gw_reviews.csv -p save_path data/topic_modelling_gw_reviews.csv`
+
 ### Dependencies
 
 Dependencies live in the [requirements file](requirements.txt).
