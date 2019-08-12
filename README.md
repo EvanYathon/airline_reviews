@@ -3,7 +3,19 @@
 
 ## Overview
 
-Germanwings is [a low-cost airline owned by Lufthansa, operating under the Eurowings brand](https://en.wikipedia.org/wiki/Germanwings).  
+Germanwings is [a low-cost airline owned by Lufthansa, operating under the Eurowings brand](https://en.wikipedia.org/wiki/Germanwings).  Customers sometimes review the flight service on a website such as [airlinequality.com](airlinequality.com).  This analysis will focus on several reviews from this website.
+
+In each review there is a final recommendation, either recommending Germanwings or not.  My thought process was that this is very important for the company, as in the age of online reviews much of our decision making can be swayed by online opinion.  It would be valuable to see what influences a recommendation.  
+
+My goal for this project is to try and see which features are important and what their influence is on the recommendation.
+
+## Planned Workflow
+
+1. Scrape the reviews from [airlinequality.com](airlinequality.com).  The [given reviews](data/given_4U_reviews.txt) have an issue where some of the ratings out of 5 have only the value `12345`.
+2. Verify that all given reviews exist in my scraped reviews, and clean the dataset.
+3. EDA: plot features in the dataset against the response (recommendation).  Explore other variables in the dataset.
+4. NLP: perform topic modelling on the review and review title content.  Extracting common topics will hopefully give additional features to help associate with the response variable.
+5. Perform Logistic Regression - a yes/no recommendation provides an ideal situation for this binary response.  Also gain feature important, coefficient estimates and coefficient confidence intervals.
 
 ## Scripts
 
