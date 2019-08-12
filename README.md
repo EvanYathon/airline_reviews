@@ -63,6 +63,16 @@ Sample usage:
 
 `papermill src/ipynbs/topic_modeling.ipynb src/topic_modeling_ran.ipynb -p load_path data/cleaned_gw_reviews.csv -p save_path data/topic_modelling_gw_reviews.csv`
 
+### [Regression Analysis](src/regression_analysis_ran.ipynb)
+
+Regression Analysis is a notebook to be ran with [papermill](https://github.com/nteract/papermill).  It was chosen to be ran with `papermill` to view markdown syntax helping to explain regression analysis logic.
+
+The purpose of this notebook is to run a logistic regression analysis on the cleaned reviews data.  Trying to identify contributing factors to a customer recommending an airline or not given that they have submitted a review is the central theme.  Feature importance, coefficient estimates and confidence intervals are pulled from models after some initial cleanup is performed.
+
+Sample usage:
+
+`papermill src/ipynbs/regression_analysis.ipynb src/regression_analysis_ran.ipynb -p load_path data/topic_modeling_gw_reviews.csv`
+
 ### Dependencies
 
 Dependencies live in the [requirements file](requirements.txt).
