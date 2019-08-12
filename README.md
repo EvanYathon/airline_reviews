@@ -17,6 +17,10 @@ My goal for this project is to try and see which features are important and what
 4. NLP: perform topic modelling on the review and review title content.  Extracting common topics will hopefully give additional features to help associate with the response variable.
 5. Perform Logistic Regression - a yes/no recommendation provides an ideal situation for this binary response.  Also gain feature important, coefficient estimates and coefficient confidence intervals.
 
+## Report
+
+A report containing the highlights is located in [report.md](report/report.md).
+
 ## Scripts
 
 Scripts are in the form of python scripts or jupyter notebooks to be ran with [papermill](https://github.com/nteract/papermill), run from the command line and root of the project.  They are presented in the order in which they should be ran.
