@@ -129,6 +129,12 @@ I was surprised to not see time and delays be higher on the list for recommendat
 
 ### Future Steps and Alternative Ideas
 
-- investigate multicollinearity
-- perform separate analysis; did the transfer to Eurowings have a positive impact on reviews?
-- expand analysis to all airlines; what are the most important things to people when they fly?
+Some future steps given more time:
+- Investigate multicollinearity and perhaps use `statsmodels` rather than `scikit-learn` to get CLT estimates of coefficients
+- Play around with different types of imputation for missing values
+- Further refine LDA, or try some other type of NLP
+  * Common n-grams to extract phrases
+
+Alternative Ideas:
+- [Eurowings](https://www.airlinequality.com/airline-reviews/eurowings) has several reviews.  Maybe a separate project to identify if the transfer of holdings had a positive impact
+- Expand this analysis to all airlines on airlinequality.com; what are the most important things to people when they fly?
