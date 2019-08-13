@@ -134,6 +134,7 @@ Some future steps given more time:
 - Play around with different types of imputation for missing values
 - Further refine LDA, or try some other type of NLP
   * Common n-grams to extract phrases
+- Obtain secondary feature importance with tree based methods
 
 Alternative Ideas:
 - [Eurowings](https://www.airlinequality.com/airline-reviews/eurowings) has several reviews.  Maybe a separate project to identify if the transfer of holdings had a positive impact
