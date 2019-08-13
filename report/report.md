@@ -76,6 +76,59 @@ Topic modeling will use LDA to extract topics. Probability of belonging to a cer
 
 Topic modeling was chosen to try to infer common topics and themes between reviews.  If reviews were talking about the same thing consistently, then perhaps these topics were important one way or another to their recommendation.
 
-Separate topic modeling analyses were used for review title and text
+Separate topic modeling analyses were used for review title and text with the idea that titles are often an important summary of the reviewers main point.  Also could have combined both title and review text to have a larger corpus to learn from, which was also considered.
+
+Preprocessing is crucial for topic modeling, and `spacy` was the chosen library for preprocessing.  Stopwords and unwanted parts of speech were removed.  Words were reduced to their lemma, and specific parts of the text were removed via regex.
+
+After preprocessing a dictionary and document-term matrix were created and used to train an LDA (Latent Dirichlet Allocation) model.  Several values of `alpha` and `eta` were experimented with to result in topics made up of words that were similar and made sense.  In addition, the visualization created by the `pyLDAvis` library was used to guide the number of topics selected.
+
+Finally each review was given several new features which were the probability of belonging to the topics selected by the LDA algorithm.  I thought that having probabilities of topic assignment as compared to complete topic assignment might be better for the regression, to allow for uncertain topic assignment.
+
+### Logistic Regression Analysis
+
+In keeping with the main goal, regression would hopefully quantify these review features association with recommendation status.  Feature importance, coefficient estimates and confidence intervals are pulled from models after some initial cleanup is performed.
+
+Several features are removed from the dataset as outlined in the notebook due to missing values or columns inappropriate for this regression.
+
+Two scripts that I had previously coded, `PrepareForModel` and `bootstrap_skmodel` were used in this analysis.  `PrepareForModel` is a handy function to dummy encode categorical variables.  `bootstrap_skmodel` outputs bootstrapped coefficients for a `scikit-learn` model in order to obtain confidence intervals.
+
+Feature importance was obtained by using L1 regularization with varying regularization strengths.  L1 regularization tends to zero out less important feature coefficients with increasing regularization strength, so the order that the coefficients were zeroed out indicates the relative importance.
+
+Important features in order were found to be:
+
+1. Review value out of 10
+2. Value for money rating out of 5
+3. Money value topic obtained from review titles
+4. Food, beverages and crew topic obtained from review text
+5. Luggage and seats topic obtained from review text
+6. Staff and delays topic obtained from review titles
+7. Time and delays topic obtained from review text
+8. First Class seating type
+9. Business Class seating type
+
+Note that the seating types for first and business class only had one sample for each, the rest were economy class.
+
+Logistic Regression Coefficients were obtained along with bootstrapped coefficients, but as hypothesized earlier they were not very reliable.  The low sample size impacted them greatly, resulting in unstable estimates from bootstrapping.  Another possible cause may have been multicollinearity, causing unstable estimates.
+
+### Conclusion
+
+Unfortunately the association effect of each feature wasn't able to be reliably obtained through logistic regression, but the feature importance list seemed to be useful.  It lined up with what was seen in the EDA section.
+
+I would say that some of the most important factors for customers recommending Germanwings were:
+
+1. Value for money
+2. Crew service
+3. Seat comfort
+
+Whereas some of the least important factors were:
+
+1. Inflight food and beverages
+2. Inflight entertainment
+
+I was surprised to not see time and delays be higher on the list for recommendations, although the small sample size may have again sabotaged this.
 
 ### Future Steps and Alternative Ideas
+
+- investigate multicollinearity
+- perform separate analysis; did the transfer to Eurowings have a positive impact on reviews?
+- expand analysis to all airlines; what are the most important things to people when they fly?
